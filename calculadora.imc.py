@@ -1,24 +1,35 @@
+try:
+    nome_do_paciente = input("Escreva o nome do paciente: ")
+    peso = float(input("Digite seu peso (kg): "))
+    altura = float(input("Digite sua altura (m): "))
+    
+    # Calculando o IMC
+    imc = peso / (altura * altura)
 
-nome= input("escreva o seu nome?")
-peso= float(input("qual é o seu peso?"))
-altura = float(input("qual é sua altura?"))
+    # Exibindo a classificação do IMC
+    if imc < 18.5:
+        print("Abaixo do peso")
+    elif 18.5 <= imc <= 24.9:
+        print("Peso normal")
+    elif 25.0 <= imc <= 29.9:
+        print("Sobrepeso")
+    elif 30.0 <= imc <= 34.9:
+        print("Obesidade Grau I")
+    elif 35.0 <= imc <= 39.9:
+        print("Obesidade Grau II")
+    else:
+        print("Obesidade Grau III mórbida")
 
-resultado= peso/(altura* altura)
+    # Exibindo o resultado final
+    print(f"O paciente {nome_do_paciente} tem um IMC de {imc:.1f}")
 
-if resultado <= 18.5: 
-    print("abaixo peso")
-elif resultado <= 18.5:
-    print("peso normal")
-elif resultado <= 25.0:
-    print(f"sobrepeso {resultado}⚠️ Cuidado com a Saúde")
-elif resultado <= 30.0:
-    print("obesidade grau 1")
-elif resultado<= 35.0:
-    print("obesidade grau 2")
-else:
-    print("peso invalido")
+except ValueError:
+    print("Erro: Por favor, insira valores numéricos válidos para peso e altura.")
+except KeyboardInterrupt:
+    print("\nEntrada interrompida pelo usuário. O programa será encerrado.")
 
-print(f"usuario {nome} seu estado é {resultado} ")
- 
 
- 
+with open ("cadastro_imc.txt",  "a") as arquivo:
+    arquivo.write(f"Nome: {nome_do_paciente} \nIMC: {imc:.2f}")
+    arquivo.write("\n-------------------------------------")
+
